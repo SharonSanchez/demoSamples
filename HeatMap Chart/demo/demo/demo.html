@@ -1,0 +1,643 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>
+        Scales
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="description" content="Essential JS 2 (Preview)" />
+    <meta name="author" content="Syncfusion" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <script>
+        window.__karma__ = { files: {} };
+        window.require = {
+            config: function (json) {
+                window.rsConfig = json;
+                window.rsConfig.baseUrl = '';
+            }
+        };
+    </script>
+    <script data-main="demo" src="../../node_modules/requirejs/require.js"></script>
+    <script>
+        require.config({
+        packages: [ {
+        name: '@syncfusion/ej2-base',
+        location: '../../node_modules/@syncfusion/ej2-base/dist',
+        main: 'ej2-base.umd.min.js'           
+    },
+    {
+        name: '@syncfusion/ej2-data',
+        location: '../../node_modules/@syncfusion/ej2-data/dist',
+        main: 'ej2-data.umd.min.js'          
+    },
+     {
+        name: '@syncfusion/ej2-compression',
+        location: '../../node_modules/@syncfusion/ej2-compression/dist',
+        main: 'ej2-compression.umd.min.js'          
+    },
+     {
+        name: '@syncfusion/ej2-file-utils',
+        location: '../../node_modules/@syncfusion/ej2-file-utils/dist',
+        main: 'ej2-file-utils.umd.min.js'          
+    },
+    {
+        name: '@syncfusion/ej2-svg-base',
+        location: '../../node_modules/@syncfusion/ej2-svg-base/dist',
+        main: 'ej2-svg-base.umd.min.js'          
+    },
+     {
+        name: '@syncfusion/ej2-pdf-export',
+        location: '../../node_modules/@syncfusion/ej2-pdf-export/dist',
+        main: 'ej2-pdf-export.umd.min.js'          
+    }
+    ]
+        });
+    </script>
+
+</head>
+
+<body oncontextmenu="return false;">
+    <div id="1container" style="float:left"></div>
+    
+    <!-- <div> hidelabel <input type="checkbox" id="hidelabel" ></div>
+    <div> hidelabel2 <input type="checkbox" id="hidelabel1" ></div> -->
+
+    <!-- <div> ColumnWiseColor <input type="checkbox" id="col" ></div>
+    <div> RowWiseColor <input type="checkbox" id="row" ></div> -->
+    <!-- <div> Default <input type="checkbox" id="tablewise" ></div> -->
+    <input type="label" readonly="true" value="Colormode" style="border-width:0px" />
+    <select id="Colormode">
+        <option>Table</option>
+        <option>Column</option>
+        <option>Row</option>
+    </select>
+
+    <div style=" width:25%;overflow: auto; border:thin dotted red">
+        <input type="button" id="clearSelection" value="ClearSelection" style="width:100%;" />
+        <input type="button" id="directAPI" value="Direct Properties" style="width:100%;" onclick="Direct()" />
+        <div class="innerProperties" id="directProperties" style="display:none">
+            <table>
+                <tr>
+                    <td>
+                        <input type="label" readonly="true" value="Render Mode" style="border-width:0px" />
+                    </td>
+                    <td>
+                        <select id="renderingMode">
+                            <option>SVG</option>
+                            <option>Canvas</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Width:
+                        <input id="heatmapWidth" type="text" style="width:20%"> Height:
+                        <input id="heatmapHeight" type="text" style="width:20%">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <input type="button" id="Legend" value="Legend Settings" style="width:100%;" onclick="Legend()" />
+        <div class="innerProperties" id="legendSettings" style="display:none">
+
+            <table>
+                <tr>
+                    <td>
+                        <input type="label" readonly="true" value="Position" style="border-width:0px" />
+                    </td>
+                    <td>
+                        <select id="legendPosition">
+                            <option>Right</option>
+                            <option>Left</option>
+                            <option>Bottom</option>
+                            <option>Top</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="label" value="Alignment" style="border-width:0px" />
+                    </td>
+                    <td>
+                        <select id="alignment">
+                            <option>Center</option>
+                            <option>Near</option>
+                            <option>Far</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="label" readonly="true" value="Label Display Type" style="border-width:0px" />
+                    </td>
+                    <td>
+                        <select id="labelDisplay">
+                            <option>All</option>
+                            <option>Edge</option>
+                            <option>None</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="label" value="Text Overflow" style="border-width:0px" />
+                    </td>
+                    <td>
+                        <select id="textOverflow">
+                            <option>None</option>
+                            <option>Trim</option>
+                            <option>Wrap</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        enableSmartLegend
+                    </td>
+                    <td>
+                        <input type="checkbox" id="smartLegend">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        visible
+                    </td>
+                    <td>
+                        <input type="checkbox" id="visible" checked>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        showLabel
+                    </td>
+                    <td>
+                        <input type="checkbox" id="showLabel" checked>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        showGradientPointer
+                    </td>
+                    <td>
+                        <input type="checkbox" id="showGradientPointer" checked>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Width:
+                        <input id="legendWidth" type="text" style="width:20%"> Height:
+                        <input id="legendHeight" type="text" style="width:20%">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Label Format:
+                        <input id="labelFormat" type="text" style="width:20%">
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+        <input type="button" id="Palette" value="Palette Settings" style="width:100%;" onclick="Palette()" />
+        <div class="innerProperties" id="paletteSettings" style="display:none">
+            <table>
+                <tr>
+                    <td>
+                        <input type="label" readonly="true" value="Palette Type" style="border-width:0px" />
+                    </td>
+                    <td>
+                        <select id="paletteType">
+                            <option>Gradient</option>
+                            <option>Fixed</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Empty Point Color:
+                        <input id="emptyPoint" type="text" style="width:20%">
+                        <input id="emptyPointSubmit" type="submit" value="load" style="width:20%">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="label" readonly="true" value="Palette Collections" style="border-width:0px" />
+                    </td>
+                    <td>
+                        <select id="paletteCollections">
+                            <option>colors</option>
+                            <option>colors and value</option>
+                            <option>colors and label</option>
+                            <option>colors, value, label</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <input type="button" id="Margin" value="Margin Settings" style="width:100%;" onclick="Margin()" />
+        <div class="innerProperties" id="marginSettings" style="display:none">
+            <table>
+                <tr>
+                    <td>
+                        Left:
+                        <input id="Left" type="text" style="width:40%">
+                    </td>
+                    <td>
+                        Right:
+                        <input id="Right" type="text" style="width:40%">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Top:
+                        <input id="Top" type="text" style="width:40%">
+                    </td>
+                    <td>
+                        Bottom:
+                        <input id="Bottom" type="text" style="width:40%">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <input type="button" id="Cell" value="Cell Settings" style="width:100%;" onclick="CellSettings()" />
+        <div class="innerProperties" id="cellSettings" style="display:none">
+            <table>
+                <tr>
+                    <td>
+                        showLabel
+                    </td>
+                    <td>
+                        <input type="checkbox" id="showLabelCell" checked>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        enableCellHighlighting
+                    </td>
+                    <td>
+                        <input type="checkbox" id="enableCellHighlighting" checked>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        isInversedBubbleSize
+                    </td>
+                    <td>
+                        <input type="checkbox" id="isInversedBubbleSize">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Bubble Type
+                    </td>
+                    <td>
+                        <select id="BubbleType">
+                            <option>Color</option>
+                            <option>Size</option>
+                            <option>SizeAndColor</option>
+                            <option>Sector</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Tile Type
+                    </td>
+                    <td>
+                        <select id="tileType">
+                            <option>Rect</option>
+                            <option>Bubble</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Format:
+                        <input id="cellFormat" type="text" style="width:50%">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Minimum :
+                        <input id="minimum" type="text" style="width:50%">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Maximum :
+                        <input id="maximum" type="text" style="width:50%">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        border width :
+                        <input id="bwidth" type="text" style="width:50%">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        border color :
+                        <input id="bcolor" type="text" style="width:50%">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Radius :
+                        <input id="bradius" type="text" style="width:50%">
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+        <input type="button" id="Axis" value="Axis Settings" style="width:100%;" onclick="Axis()" />
+        <div class="innerProperties" id="axisSettings" style="display:none">
+            <b>X-Axis:</b>
+            <table>
+                <tr>
+                    <td>
+                        Inversed Axis
+                    </td>
+                    <td>
+                        <input type="checkbox" id="x-inversed">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Opposed Position
+                    </td>
+                    <td>
+                        <input type="checkbox" id="x-opposed">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="label" value="x-valueType" style="border-width:0px" />
+                    </td>
+                    <td>
+                        <select id="x-valueType">
+                            <option>Category</option>
+                            <option>DateTime</option>
+                            <option>Numeric</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="label" value="x-intervalType" style="border-width:0px" />
+                    </td>
+                    <td>
+                        <select id="x-intervalType">
+                            <option>Days</option>
+                            <option>Years</option>
+                            <option>Months</option>
+                            <option>Hours</option>
+                            <option>Minutes</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Label Intersect Action:
+                    </td>
+                    <td>
+                        <select id="labelIntersect">
+                            <option>Trim</option>
+                            <option>None</option>
+                            <option>Rotate45</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Minimum:
+                        <input id="xminimum" type="text" style="width:40%">
+                    </td>
+                    <td>
+                        Maximum:
+                        <input id="xmaximum" type="text" style="width:40%">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Increment:
+                        <input id="xincrement" type="text" style="width:40%">
+                    </td>
+                    <td>
+                        Interval:
+                        <input id="xinterval" type="text" style="width:40%">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Label Rotation:
+                        <input id="rotation" type="text" style="width:40%">
+                    </td>
+                </tr>
+            </table>
+            <b>Y-Axis:</b>
+
+            <table>
+                <tr>
+                    <td>
+                        Inversed Axis
+                    </td>
+                    <td>
+                        <input type="checkbox" id="y-inversed">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Opposed Position
+                    </td>
+                    <td>
+                        <input type="checkbox" id="y-opposed">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="label" value="y-valueType" style="border-width:0px" />
+                    </td>
+                    <td>
+                        <select id="y-valueType">
+                            <option>Category</option>
+                            <option>DateTime</option>
+                            <option>Numeric</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="label" value="y-intervalType" style="border-width:0px" />
+                    </td>
+                    <td>
+                        <select id="y-intervalType">
+                            <option>Days</option>
+                            <option>Years</option>
+                            <option>Months</option>
+                            <option>Hours</option>
+                            <option>Minutes</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Minimum:
+                        <input id="yminimum" type="text" style="width:40%">
+                    </td>
+                    <td>
+                        Maximum:
+                        <input id="ymaximum" type="text" style="width:40%">
+                    </td>
+                    </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Increment:
+                        <input id="yincrement" type="text" style="width:40%">
+                    </td>
+                    <td>
+                        Interval:
+                        <input id="yinterval" type="text" style="width:40%">
+                    </td>
+                </tr>
+                <tr>
+                        <td>
+                            Label Format:
+                            <input id="yLabelFormat" type="text" style="width:40%">
+                        </td>                      
+                </tr>
+            </table>
+        </div>
+        <input type="button" id="Title" value="Title Settings" style="width:100%;" onclick="Title()" />
+        <div class="innerProperties" id="titleSettings" style="display:none">
+            <table>
+                <tr>
+                    <td>
+                        Text:
+                        <input id="titleText" type="text" style="width:75%">
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <b>Text Style:</b>
+                <tr>
+                    <td>
+                        Size:
+                        <input id="titleSize" type="text" style="width:50%">
+                    </td>
+                    <td>
+                        Color:
+                        <input id="titleColor" type="text" style="width:50%">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        FontFamily:
+                        <input id="titleFontFamily" type="text" style="width:40%">
+                    </td>
+                    <td>
+                        FontWeight:
+                        <input id="titleFontWeight" type="text" style="width:40%">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        FontStyle:
+                        <input id="titleFontStyle" type="text" style="width:40%">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="label" value="Text Overflow" style="border-width:0px" />
+                    </td>
+                    <td>
+                        <select id="titleTextOverflow">
+                            <option>Trim</option>
+                            <option>None</option>
+                            <option>Wrap</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="label" value="Text Alignment" style="border-width:0px" />
+                    </td>
+                    <td>
+                        <select id="titleTextAlignment">
+                            <option>Center</option>
+                            <option>Near</option>
+                            <option>Far</option>
+                        </select>
+                    </td>
+                </tr>
+
+            </table>
+          
+        </div>
+    </div>
+    <button id="data" onclick="resize()">Click</button>
+</body>
+<script>
+   
+    function Direct() {
+        properties = document.getElementById('directProperties').style.display;
+        document.getElementById('directProperties').style.display = (properties == 'none') ? 'block' : 'none'
+        document.getElementById('paletteSettings').style.display = document.getElementById('cellSettings').style.display =
+            document.getElementById('axisSettings').style.display = document.getElementById('legendSettings').style.display =
+            document.getElementById('titleSettings').style.display = 'none';
+    }
+    function Legend() {
+        legend = document.getElementById('legendSettings').style.display;
+        document.getElementById('legendSettings').style.display = (legend == 'none') ? 'block' : 'none';
+        document.getElementById('paletteSettings').style.display = document.getElementById('cellSettings').style.display =
+        document.getElementById('axisSettings').style.display =
+        document.getElementById('directProperties').style.display = document.getElementById('titleSettings').style.display = 'none';
+    }
+
+    function Palette() {
+        palette = document.getElementById('paletteSettings').style.display;
+        document.getElementById('paletteSettings').style.display = (palette == 'none') ? 'block' : 'none'
+        document.getElementById('legendSettings').style.display = document.getElementById('cellSettings').style.display =
+            document.getElementById('axisSettings').style.display = document.getElementById('marginSettings').style.display =
+            document.getElementById('directProperties').style.display = document.getElementById('titleSettings').style.display = 'none';
+    }
+
+    function CellSettings() {
+        cell = document.getElementById('cellSettings').style.display;
+        document.getElementById('cellSettings').style.display = (cell == 'none') ? 'block' : 'none'
+        document.getElementById('legendSettings').style.display = document.getElementById('paletteSettings').style.display =
+            document.getElementById('axisSettings').style.display = document.getElementById('marginSettings').style.display =
+            document.getElementById('directProperties').style.display = document.getElementById('titleSettings').style.display = 'none';
+    }
+
+    function Axis() {
+        axis = document.getElementById('axisSettings').style.display;
+        document.getElementById('axisSettings').style.display = (axis == 'none') ? 'block' : 'none';
+        document.getElementById('legendSettings').style.display = document.getElementById('cellSettings').style.display =
+            document.getElementById('paletteSettings').style.display = document.getElementById('marginSettings').style.display =
+            document.getElementById('directProperties').style.display = document.getElementById('titleSettings').style.display = 'none';
+    }
+
+    function Margin() {
+        margin = document.getElementById('marginSettings').style.display;
+        document.getElementById('marginSettings').style.display = (margin == 'none') ? 'block' : 'none'
+        document.getElementById('legendSettings').style.display = document.getElementById('cellSettings').style.display =
+            document.getElementById('paletteSettings').style.display = document.getElementById('axisSettings').style.display =
+            document.getElementById('directProperties').style.display = document.getElementById('titleSettings').style.display = 'none';
+    }
+    function Title() {
+        title = document.getElementById('titleSettings').style.display;
+        document.getElementById('titleSettings').style.display = (title == 'none') ? 'block' : 'none'
+        document.getElementById('paletteSettings').style.display = document.getElementById('cellSettings').style.display =
+            document.getElementById('axisSettings').style.display = document.getElementById('directProperties').style.display = 'none';
+    }
+</script>
+<style>
+#container_Container_TextGroup {
+    color: crimson;
+}
+</style>
+</html>
