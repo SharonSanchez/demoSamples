@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>
+        Scales
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="description" content="Essential JS 2 (Preview)" />
+    <meta name="author" content="Syncfusion" />
+    
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+
+    <script>
+        window.__karma__ = { files: {} };
+        window.require = {
+            config: function (json) {
+                window.rsConfig = json;
+                window.rsConfig.baseUrl = '';
+            }
+        };
+    </script>
+    <script data-main="demo" src="../../node_modules/requirejs/require.js"></script>
+    <script>
+        require.config({
+        packages: [ {
+        name: '@syncfusion/ej2-base',
+        location: '../../node_modules/@syncfusion/ej2-base/dist',
+        main: 'ej2-base.umd.min.js'           
+    },
+    {
+        name: '@syncfusion/ej2-data',
+        location: '../../node_modules/@syncfusion/ej2-data/dist',
+        main: 'ej2-data.umd.min.js'          
+    },
+     {
+        name: '@syncfusion/ej2-compression',
+        location: '../../node_modules/@syncfusion/ej2-compression/dist',
+        main: 'ej2-compression.umd.min.js'          
+    },
+     {
+        name: '@syncfusion/ej2-file-utils',
+        location: '../../node_modules/@syncfusion/ej2-file-utils/dist',
+        main: 'ej2-file-utils.umd.min.js'          
+    },
+    {
+        name: '@syncfusion/ej2-svg-base',
+        location: '../../node_modules/@syncfusion/ej2-svg-base/dist',
+        main: 'ej2-svg-base.umd.min.js'          
+    },
+     {
+        name: '@syncfusion/ej2-pdf-export',
+        location: '../../node_modules/@syncfusion/ej2-pdf-export/dist',
+        main: 'ej2-pdf-export.umd.min.js'          
+    }
+    ]
+        });
+    </script>
+
+</head>
+
+<body oncontextmenu="return false;">
+    <div class="control-section">
+        <div id="container" align="center"></div>
+   </div>
+   <style>
+    #container_Container_TextGroup {
+        color: crimson;
+    }
+    .control-section * {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        
+        }
+          
+    </style>
+</html>
